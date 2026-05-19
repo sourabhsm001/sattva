@@ -1,0 +1,1629 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sattva Nation – Celebrate Life</title>\n<meta name=\"description\" content=\"Sattva Nation: India's holistic wellness platform celebrating life with festivals, retreats, and transformative programmes.\">\n<link rel=\"icon\" href=\"favicon.ico\" type=\"image/x-icon\"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --pink-deep: #c2185b;
+    --pink-mid: #d4537e;
+    --pink-soft: #f06292;
+    --pink-light: #fce4ec;
+    --pink-pale: #fdf0f5;
+    --white: #ffffff;
+    --text-dark: #2d1a24;
+    --text-mid: #6b3a50;
+    --text-muted: #a06080;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #f4c0d1;
+  }
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--pink-deep);
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--text-dark); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--pink-deep); }
+  .nav-cta {
+    background: var(--pink-deep);
+    color: white !important;
+    padding: 0.5rem 1.3rem;
+    border-radius: 50px;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.06em !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: #a31150 !important; transform: translateY(-1px); }
+
+  /* HERO CAROUSEL */
+  .hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+  }
+
+  /* Slides */
+  .carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  .carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Each slide has a unique gradient overlay for mood variety */
+  .carousel-slide:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80'); }
+  .carousel-slide:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1545389336-cf090694435e?w=1600&q=80'); }
+  .carousel-slide:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80'); }
+  .carousel-slide:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=1600&q=80'); }
+  .carousel-slide:nth-child(5) { background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&q=80'); }
+
+  .slide-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      120deg,
+      rgba(30, 5, 18, 0.72) 0%,
+      rgba(194, 24, 91, 0.38) 50%,
+      rgba(10, 2, 8, 0.55) 100%
+    );
+  }
+
+  /* Slide content */
+  .slide-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 8% 0 8%;
+    padding-top: 80px;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s 0.3s ease, transform 0.7s 0.3s ease;
+    max-width: 780px;
+  }
+  .carousel-slide.active .slide-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .slide-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #f8bbd0;
+    margin-bottom: 1.4rem;
+  }
+  .slide-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px; height: 1.5px;
+    background: var(--pink-soft);
+  }
+
+  .slide-title {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 4.8rem);
+    line-height: 1.08;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.3);
+  }
+  .slide-title em {
+    font-style: italic;
+    color: #f48fb1;
+  }
+
+  .slide-sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.82);
+    max-width: 520px;
+    margin-bottom: 2.2rem;
+    font-weight: 300;
+  }
+
+  .slide-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--pink-deep);
+    color: white;
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #a31150; transform: translateY(-2px); }
+
+  .btn-outline {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, border-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    backdrop-filter: blur(4px);
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.22); border-color: white; }
+
+  /* Progress bar */
+  .slide-progress {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 3px;
+    background: var(--pink-soft);
+    width: 0%;
+    z-index: 10;
+    transition: width linear;
+  }
+
+  /* Arrow controls */
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    color: white;
+    font-size: 1.1rem;
+  }
+  .carousel-arrow:hover {
+    background: var(--pink-deep);
+    border-color: var(--pink-deep);
+    transform: translateY(-50%) scale(1.08);
+  }
+  .carousel-arrow.prev { left: 2.5%; }
+  .carousel-arrow.next { right: 2.5%; }
+
+  /* Dot indicators */
+  .carousel-dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: background 0.3s, width 0.3s, border-radius 0.3s;
+  }
+  .dot.active {
+    background: var(--pink-soft);
+    width: 28px;
+    border-radius: 4px;
+  }
+
+  /* Slide counter badge */
+  .slide-counter {
+    position: absolute;
+    top: 50%;
+    right: 2.5%;
+    transform: translateY(-50%);
+    writing-mode: vertical-lr;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    z-index: 10;
+    margin-right: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .slide-counter .current {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 600;
+    writing-mode: horizontal-tb;
+  }
+  .slide-counter .total {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    writing-mode: horizontal-tb;
+  }
+  .slide-counter .sep {
+    width: 1px; height: 40px;
+    background: rgba(255,255,255,0.3);
+    writing-mode: horizontal-tb;
+  }
+
+  /* Thumbnail strip (bottom-right) */
+  .thumbnail-strip {
+    position: absolute;
+    bottom: 2rem;
+    right: 2.5%;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+  .thumb {
+    width: 54px; height: 38px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.25s, transform 0.2s;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.55;
+  }
+  .thumb.active {
+    border-color: var(--pink-soft);
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  .thumb:hover { opacity: 0.85; }
+
+  /* Floating stat chip on hero */
+  .hero-stat-chip {
+    position: absolute;
+    bottom: 5rem;
+    left: 8%;
+    z-index: 10;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 16px;
+    padding: 0.9rem 1.4rem;
+    display: flex;
+    gap: 1.8rem;
+    align-items: center;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+  }
+  .stat-lbl {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 3px;
+  }
+  .stat-divider {
+    width: 1px; height: 36px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 6rem 5%;
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--pink-deep);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 3vw, 2.8rem);
+    line-height: 1.18;
+    color: var(--text-dark);
+    margin-bottom: 1.2rem;
+  }
+  .section-title em { font-style: italic; color: var(--pink-deep); }
+  .section-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+  .about-reasons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-top: 1.8rem;
+  }
+  .reason-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+  .reason-dot {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--pink-light);
+    border: 1.5px solid #f4c0d1;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .reason-dot::after {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--pink-deep);
+  }
+  .about-visual {
+    background: var(--pink-pale);
+    border-radius: 32px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-visual::before {
+    content: 'SATTVA';
+    position: absolute;
+    font-family: var(--serif);
+    font-size: 5rem;
+    font-weight: 700;
+    color: #f4c0d1;
+    opacity: 0.4;
+    top: -10px; right: -10px;
+    letter-spacing: -2px;
+  }
+  .elements-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    position: relative; z-index: 1;
+  }
+  .element-pill {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #f4c0d1;
+    padding: 1rem;
+    text-align: center;
+  }
+  .element-emoji { font-size: 1.6rem; margin-bottom: 0.4rem; }
+  .element-name {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    font-weight: 600;
+  }
+  .element-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .element-pill.center-element {
+    grid-column: 2; grid-row: 2;
+    background: var(--pink-deep);
+    border-color: var(--pink-deep);
+  }
+  .element-pill.center-element .element-name,
+  .element-pill.center-element .element-sub { color: white; }
+
+  /* PROGRAMS SECTION */
+  .programs {
+    padding: 6rem 5%;
+    background: var(--pink-pale);
+  }
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 3.5rem;
+  }
+  .programs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+  }
+  .prog-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #f4c0d1;
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+  .prog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 44px rgba(194,24,91,0.11);
+  }
+  .prog-img {
+    width: 200px;
+    min-height: 180px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .prog-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(194,24,91,0.18), transparent);
+  }
+  .prog-body {
+    padding: 1.6rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .prog-icon-wrap {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--pink-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  .prog-title {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.45rem;
+    line-height: 1.25;
+  }
+  .prog-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 0.9rem;
+  }
+  .prog-link {
+    font-size: 0.8rem;
+    color: var(--pink-deep);
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s;
+  }
+  .prog-link:hover { gap: 8px; }
+  .prog-link::after { content: '→'; }
+
+  /* WHAT WE DO */
+  .what-we-do {
+    padding: 6rem 5%;
+    background: white;
+  }
+  .wwd-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .wwd-card {
+    border-radius: 24px;
+    padding: 2.2rem 1.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .wwd-card.pink-bg {
+    background: var(--pink-deep);
+    color: white;
+  }
+  .wwd-card.light-bg { background: var(--pink-pale); }
+  .wwd-card.border-bg {
+    background: white;
+    border: 1.5px solid #f4c0d1;
+  }
+  .wwd-num {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    font-weight: 700;
+    opacity: 0.15;
+    line-height: 1;
+    margin-bottom: -1rem;
+  }
+  .wwd-card.pink-bg .wwd-num { opacity: 0.25; color: white; }
+  .wwd-type {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .wwd-card.pink-bg .wwd-type { color: #f8bbd0; }
+  .wwd-card:not(.pink-bg) .wwd-type { color: var(--pink-mid); }
+  .wwd-title {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    line-height: 1.25;
+  }
+  .wwd-card.pink-bg .wwd-title { color: white; }
+  .wwd-card:not(.pink-bg) .wwd-title { color: var(--text-dark); }
+  .wwd-body {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .wwd-card.pink-bg .wwd-body { color: #fce4ec; }
+  .wwd-card:not(.pink-bg) .wwd-body { color: var(--text-mid); }
+
+  /* GALLERY */
+  .gallery {
+    padding: 6rem 5%;
+    background: white;
+  }
+  .gallery-bento {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    grid-template-rows: 260px 260px;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+  .gallery-item {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+  }
+  .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+  .gallery-item:hover .gallery-item-label { transform: translateY(0); opacity: 1; }
+  .gallery-item.tall { grid-row: span 2; }
+  .gallery-item-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(194,24,91,0.75) 0%, rgba(45,26,36,0.2) 60%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+  .gallery-item-label {
+    position: absolute;
+    bottom: 1.2rem; left: 1.2rem; right: 1.2rem;
+    color: white;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: transform 0.35s, opacity 0.35s;
+  }
+  .gallery-item-label .gl-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 50px;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-bottom: 0.4rem;
+    backdrop-filter: blur(4px);
+  }
+  .gallery-item-label .gl-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  /* MENTORS */
+  .mentors {
+    padding: 6rem 5%;
+    background: var(--pink-pale);
+  }
+  .mentors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.4rem;
+    margin-top: 3rem;
+  }
+  .mentor-card {
+    border-radius: 24px;
+    overflow: hidden;
+    background: white;
+    border: 1px solid #f4c0d1;
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+  .mentor-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 44px rgba(194,24,91,0.12);
+  }
+  .mentor-photo {
+    width: 100%;
+    height: 220px;
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+  }
+  .mentor-photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(45,26,36,0.55) 0%, transparent 55%);
+  }
+  .mentor-badge {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: white;
+    border-radius: 50px;
+    padding: 4px 10px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--pink-deep);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .mentor-body {
+    padding: 1.2rem 1.2rem 1.4rem;
+  }
+  .mentor-name {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+  .mentor-field {
+    font-size: 0.78rem;
+    color: var(--pink-mid);
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .mentor-bio {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 0.9rem;
+  }
+  .mentor-socials {
+    display: flex;
+    gap: 8px;
+  }
+  .mentor-social-btn {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: var(--pink-light);
+    border: 1px solid #f4c0d1;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    color: var(--pink-deep);
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+  .mentor-social-btn:hover { background: #f4c0d1; }
+
+  /* CONTACT */
+  .contact {
+    padding: 6rem 5%;
+    background: var(--pink-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .contact::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .contact-inner {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .contact h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: white;
+    line-height: 1.18;
+    margin-bottom: 1rem;
+  }
+  .contact p {
+    color: #fce4ec;
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-input {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 12px;
+    padding: 0.85rem 1.1rem;
+    color: white;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+  }
+  .form-input::placeholder { color: rgba(255,255,255,0.5); }
+  .form-input:focus {
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.18);
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+  .btn-white {
+    background: white;
+    color: var(--pink-deep);
+    border: none;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    align-self: flex-start;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-white:hover { background: #fce4ec; transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--text-dark);
+    color: #c9899c;
+    padding: 3rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: white;
+  }
+  .footer-links { display: flex; gap: 1.8rem; list-style: none; }
+  .footer-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    color: #c9899c;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: #f48fb1; }
+  .footer-copy { font-size: 0.78rem; }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 2rem;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+  }
+  .modal-overlay.active .modal-content {
+    transform: translateY(0);
+  }
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--pink-light);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--pink-deep);
+  }
+  .modal-title {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+  .modal-body {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--text-mid);
+  }
+  .modal-body p {
+    margin-bottom: 1rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Sattva<span>Nation</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#wellness">Wellness</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#mentors">Mentors</a></li>
+    <li><a href="#contact" class="nav-cta">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- HERO CAROUSEL -->
+<section class="hero-carousel" id="hero">
+
+  <!-- Slides -->
+  <div class="carousel-track" id="carouselTrack">
+
+    <!-- Slide 1 -->
+    <div class="carousel-slide active">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="slide-eyebrow">India's Holistic Wellness Platform</span>
+        <h1 class="slide-title">Sometimes you just<br>need to <em>PAUSE.</em></h1>
+        <p class="slide-sub">A space where life feels a little slower, a little deeper, and a lot more meaningful. Reconnect with your inner purity and wisdom.</p>
+        <div class="slide-btns">
+          <a href="#wellness" class="btn-primary">Explore Programmes</a>
+          <a href="#about" class="btn-outline">Our Story</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-slide">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="slide-eyebrow">8 Dimensions of Wellness</span>
+        <h1 class="slide-title">Embrace your<br><em>Sattva.</em> Celebrate life.</h1>
+        <p class="slide-sub">From physical and mental wellness to financial and environmental — we nurture every dimension of a balanced life.</p>
+        <div class="slide-btns">
+          <a href="#wellness" class="btn-primary">View Programmes</a>
+          <a href="#about" class="btn-outline">Learn More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-slide">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="slide-eyebrow">Wellness Festivals & Retreats</span>
+        <h1 class="slide-title">Feel. Try. <em>Explore.</em><br>Transform.</h1>
+        <p class="slide-sub">We create spaces where you don't just sit and listen — you experience, discover, and take something back into everyday life.</p>
+        <div class="slide-btns">
+          <a href="#events" class="btn-primary">View Events</a>
+          <a href="#contact" class="btn-outline">Join Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="carousel-slide">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="slide-eyebrow">Community & Growth</span>
+        <h1 class="slide-title">Some come to <em>reset.</em><br>Some to discover.</h1>
+        <p class="slide-sub">And somewhere in between, they end up discovering a better version of their own life. That's the Sattva Nation promise.</p>
+        <div class="slide-btns">
+          <a href="#mentors" class="btn-primary">Meet Our Mentors</a>
+          <a href="#contact" class="btn-outline">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="carousel-slide">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="slide-eyebrow">Love · Refine · Empower</span>
+        <h1 class="slide-title">Take charge of<br>your <em>life.</em></h1>
+        <p class="slide-sub">Sattva represents purity, wholesomeness, and virtue. Everybody has it in them — let us help you find yours.</p>
+        <div class="slide-btns">
+          <a href="#wellness" class="btn-primary">Start Your Journey</a>
+          <a href="#about" class="btn-outline">About Us</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /track -->
+
+  <!-- Progress bar -->
+  <div class="slide-progress" id="slideProgress"></div>
+
+  <!-- Arrow controls -->
+  <button class="carousel-arrow prev" id="prevBtn" aria-label="Previous slide">&#8592;</button>
+  <button class="carousel-arrow next" id="nextBtn" aria-label="Next slide">&#8594;</button>
+
+  <!-- Dot indicators -->
+  <div class="carousel-dots" id="carouselDots">
+    <div class="dot active" data-index="0"></div>
+    <div class="dot" data-index="1"></div>
+    <div class="dot" data-index="2"></div>
+    <div class="dot" data-index="3"></div>
+    <div class="dot" data-index="4"></div>
+  </div>
+
+  <!-- Thumbnail strip -->
+  <div class="thumbnail-strip" id="thumbStrip">
+    <div class="thumb active" data-index="0" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&q=60')"></div>
+    <div class="thumb" data-index="1" style="background-image:url('https://images.unsplash.com/photo-1545389336-cf090694435e?w=200&q=60')"></div>
+    <div class="thumb" data-index="2" style="background-image:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=200&q=60')"></div>
+    <div class="thumb" data-index="3" style="background-image:url('https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=200&q=60')"></div>
+    <div class="thumb" data-index="4" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&q=60')"></div>
+  </div>
+
+  <!-- Stats chip -->
+  <div class="hero-stat-chip">
+    <div class="stat-item">
+      <div class="stat-num">500+</div>
+      <div class="stat-lbl">Lives Touched</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num">8</div>
+      <div class="stat-lbl">Dimensions</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num">50+</div>
+      <div class="stat-lbl">Events Hosted</div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+(function() {
+  const TOTAL = 5;
+  const DURATION = 5000; // ms per slide
+  let current = 0;
+  let timer = null;
+  let progressTimer = null;
+
+  const track = document.getElementById('carouselTrack');
+  const slides = track.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('#carouselDots .dot');
+  const thumbs = document.querySelectorAll('#thumbStrip .thumb');
+  const progress = document.getElementById('slideProgress');
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    thumbs[current].classList.remove('active');
+
+    current = (index + TOTAL) % TOTAL;
+
+    track.style.transform = `translateX(-${current * 100}%)`;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    thumbs[current].classList.add('active');
+
+    resetProgress();
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startAuto() {
+    clearInterval(timer);
+    timer = setInterval(next, DURATION);
+  }
+
+  function resetProgress() {
+    progress.style.transition = 'none';
+    progress.style.width = '0%';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        progress.style.transition = `width ${DURATION}ms linear`;
+        progress.style.width = '100%';
+      });
+    });
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    prev(); startAuto();
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    next(); startAuto();
+  });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      goTo(parseInt(dot.dataset.index));
+      startAuto();
+    });
+  });
+
+  thumbs.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      goTo(parseInt(thumb.dataset.index));
+      startAuto();
+    });
+  });
+
+  // Pause on hover
+  const carousel = document.querySelector('.hero-carousel');
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', () => startAuto());
+
+  // Swipe support
+  let touchStartX = 0;
+  carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+carousel.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); startAuto(); }
+  });
+
+  // Kick off
+  startAuto();
+  resetProgress();
+
+  // Social Wellness Modal
+  const socialModal = document.getElementById('socialModal');
+  const modalClose = document.getElementById('modalClose');
+  const socialTriggers = document.querySelectorAll('.social-modal-trigger');
+
+  socialTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      socialModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  modalClose.addEventListener('click', () => {
+    socialModal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  socialModal.addEventListener('click', (e) => {
+    if (e.target === socialModal) {
+      socialModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+})();
+</script>
+
+<!-- ABOUT US -->
+<section class="about-us" id="about-us" style="padding: 4rem 5% 2rem 5%;">
+  <div style="max-width: 1000px;">
+    <span class="section-tag">About Us</span>
+    <h2 class="section-title" style="font-size: clamp(1.8rem, 3vw, 2.4rem);">Love. Refine. Empower.</h2>
+    <p class="section-body" style="margin-top:0.75rem;">Embrace your Sattva and celebrate life.</p>
+    <p class="section-body" style="margin-top:0.75rem;">Take charge of your life.</p>
+    <p class="section-body" style="margin-top:0.75rem;">Life can get busy, and the mind can feel tired sometimes. That's where Sattva Nation comes in.</p>
+    <p class="section-body" style="margin-top:0.75rem;">Sattva Nation is a festival to celebrate life and bring the best of you!</p>
+    <p class="section-body" style="margin-top:0.75rem;">Sattva represents purity, wholesomeness, and virtue. It is one of the 3 gunas, or attributes, that all human being possess.</p>
+    <p class="section-body" style="margin-top:0.75rem;">"Everybody has Sattva in them. It's a human quality."</p>
+    <p class="section-body" style="margin-top:0.75rem;">It focuses on bringing holistic wellbeing into everyday life through curated experiences, conversations, and learning spaces.</p>
+    <p class="section-body" style="margin-top:0.75rem;">We host wellness festivals, conferences, corporate programs, university events, and government collaborations, creating a shared platform where experts from diverse fields come together to share knowledge and practical tools for better living.</p>
+    <p class="section-body" style="margin-top:0.75rem;">Our approach is rooted in the belief that wellbeing is not one-dimensional. It is shaped by multiple aspects of life that work together - how we think, feel, work, connect, and grow.</p>
+    <p class="section-body" style="margin-top:0.75rem;">That's why Sattva Nation focuses on the 8 dimensions of wellness: occupational, emotional, spiritual, environmental, financial, physical, social, and intellectual. Each dimension plays a role in shaping a balanced and fulfilling life, and none exists in isolation.</p>
+    <p class="section-body" style="margin-top:0.75rem;">More than just a wellness platform, it is a growing community where people can learn, grow, connect, and move towards a healthier lifestyle at their own pace.</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div>
+    <span class="section-tag">Who We Are</span>
+    <h2 class="section-title">Love. Refine.<br><em>Empower.</em></h2>
+    <p class="section-body">
+      Sattva Nation is a festival to celebrate life and bring the best out of you. We host wellness festivals, conferences, corporate programmes, university events, and government collaborations — creating a shared platform where experts from diverse fields come together.
+    </p>
+    <p class="section-body">
+      Our approach is rooted in the belief that wellbeing is not one-dimensional — it is shaped by how we think, feel, work, connect, and grow.
+    </p>
+    <div class="about-reasons">
+      <div class="reason-item"><div class="reason-dot"></div>Experiences that fit real life</div>
+      <div class="reason-item"><div class="reason-dot"></div>Learn from wellness experts</div>
+      <div class="reason-item"><div class="reason-dot"></div>Balance and mindful living</div>
+      <div class="reason-item"><div class="reason-dot"></div>Positive community</div>
+      <div class="reason-item"><div class="reason-dot"></div>Wellness beyond fitness</div>
+      <div class="reason-item"><div class="reason-dot"></div>Calming & meaningful</div>
+    </div>
+  </div>
+
+  <div class="about-visual">
+    <div class="elements-grid">
+      <div class="element-pill">
+        <div class="element-emoji">🔥</div>
+        <div class="element-name">Agni</div>
+        <div class="element-sub">Fire</div>
+      </div>
+      <div class="element-pill">
+        <div class="element-emoji">💨</div>
+        <div class="element-name">Vayu</div>
+        <div class="element-sub">Air</div>
+      </div>
+      <div class="element-pill">
+        <div class="element-emoji">💧</div>
+        <div class="element-name">Jal</div>
+        <div class="element-sub">Water</div>
+      </div>
+      <div class="element-pill">
+        <div class="element-emoji">🌿</div>
+        <div class="element-name">Bhumi</div>
+        <div class="element-sub">Earth</div>
+      </div>
+      <div class="element-pill center-element">
+        <div class="element-emoji">✨</div>
+        <div class="element-name" style="color:white;">Sattva</div>
+        <div class="element-sub">Balance</div>
+      </div>
+      <div class="element-pill">
+        <div class="element-emoji">🌌</div>
+        <div class="element-name">Akash</div>
+        <div class="element-sub">Sky</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem;font-family:var(--serif);font-size:0.95rem;color:var(--text-mid);font-style:italic;">
+      Five elements — one balanced life
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="what-we-do" id="about2">
+  <div class="section-header" style="text-align:left;max-width:none;">
+    <span class="section-tag">What We Do</span>
+    <h2 class="section-title" style="max-width:500px;">We create spaces where life feels <em>meaningful.</em></h2>
+  </div>
+  <div class="wwd-grid">
+    <div class="wwd-card pink-bg">
+      <div class="wwd-num">01</div>
+      <div class="wwd-type">Flagship Events</div>
+      <div class="wwd-title">Wellness Festivals & Retreats</div>
+      <div class="wwd-body">Immersive experiences that help you reset, reconnect, and grow. Not just talks — you feel, try, and explore.</div>
+    </div>
+    <div class="wwd-card light-bg">
+      <div class="wwd-num">02</div>
+      <div class="wwd-type">Learning</div>
+      <div class="wwd-title">Hands-on Workshops</div>
+      <div class="wwd-body">From health and psychology to finance and creative arts — led by real experts sharing practical wisdom.</div>
+    </div>
+    <div class="wwd-card border-bg">
+      <div class="wwd-num">03</div>
+      <div class="wwd-type">Collaboration</div>
+      <div class="wwd-title">Corporate & University Programmes</div>
+      <div class="wwd-body">Structured wellness initiatives for organisations, government bodies, and academic institutions.</div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PROGRAMMES -->
+<section class="programs" id="wellness">
+  <div class="section-header">
+    <span class="section-tag">Our Programmes</span>
+    <h2 class="section-title">Tailored Paths to <em>Wellness</em></h2>
+    <p style="font-size:0.95rem;color:var(--text-mid);line-height:1.7;font-weight:300;">
+      Each programme is thoughtfully designed to address your unique needs and wellness goals.
+    </p>
+  </div>
+  <div class="programs-grid">
+
+    <div class="prog-card">
+      <div class="prog-img" style="background-image:url('https://images.unsplash.com/photo-1545389336-cf090694435e?w=400&q=80')">
+        <div class="prog-img-overlay"></div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-icon-wrap">🧘</div>
+        <div class="prog-title">Mindfulness &amp; Meditation</div>
+        <div class="prog-desc">Guided sessions to quiet the mind, reduce stress, and cultivate present-moment awareness.</div>
+        <a class="prog-link" href="#">Learn More</a>
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-img" style="background-image:url('https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=400&q=80')">
+        <div class="prog-img-overlay"></div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-icon-wrap">🏃</div>
+        <div class="prog-title">Restorative Yoga</div>
+        <div class="prog-desc">Gentle, supportive postures that promote deep relaxation and physical renewal.</div>
+        <a class="prog-link" href="#">Learn More</a>
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-img" style="background-image:url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80')">
+        <div class="prog-img-overlay"></div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-icon-wrap">🥗</div>
+        <div class="prog-title">Holistic Nutrition</div>
+        <div class="prog-desc">Personalized nutrition guidance rooted in whole-food principles and functional health.</div>
+        <a class="prog-link" href="#">Learn More</a>
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-img" style="background-image:url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=400&q=80')">
+        <div class="prog-img-overlay"></div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-icon-wrap">💆</div>
+        <div class="prog-title">Sound Healing</div>
+        <div class="prog-desc">Vibrational therapy using singing bowls and frequencies to restore energetic harmony.</div>
+        <a class="prog-link" href="#">Learn More</a>
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-img" style="background-image:url('https://images.unsplash.com/photo-1554244933-d876deb6b2ff?w=400&q=80')">
+        <div class="prog-img-overlay"></div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-icon-wrap">💰</div>
+        <div class="prog-title">Financial Wellness</div>
+        <div class="prog-desc">Money management, budgeting, and financial planning workshops for long-term stability.</div>
+        <a class="prog-link" href="#">Learn More</a>
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-img" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&q=80')">
+        <div class="prog-img-overlay"></div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-icon-wrap">💼</div>
+        <div class="prog-title">Occupational Wellness</div>
+        <div class="prog-desc">Career counselling, corporate skill development, and healthy work-life balance strategies.</div>
+        <a class="prog-link" href="#">Learn More</a>
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-img" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80')">
+        <div class="prog-img-overlay"></div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-icon-wrap">🤝</div>
+        <div class="prog-title">Social Wellness</div>
+        <div class="prog-desc">Community workshops, marathons, and building meaningful interpersonal connections.</div>
+        <a class="prog-link social-modal-trigger" href="javascript:void(0)">Learn More</a>
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-img" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=80')">
+        <div class="prog-img-overlay"></div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-icon-wrap">🌿</div>
+        <div class="prog-title">Environmental Wellness</div>
+        <div class="prog-desc">Nature tours, sustainability workshops, and energy conservation awareness programmes.</div>
+        <a class="prog-link" href="#">Learn More</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="events">
+  <div class="section-header">
+    <span class="section-tag">Gallery</span>
+    <h2 class="section-title">A Glimpse Into <em>Our World</em></h2>
+    <p style="font-size:0.95rem;color:var(--text-mid);line-height:1.7;font-weight:300;">
+      Moments of wellness, celebration, and transformation from our community.
+    </p>
+  </div>
+
+  <div class="gallery-bento">
+    <!-- Large tall card -->
+    <div class="gallery-item tall" style="background-image:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80')">
+      <div class="gallery-item-overlay"></div>
+      <div class="gallery-item-label">
+        <div class="gl-tag">Retreat</div>
+        <div class="gl-title">Wellness Retreat Fest, Goa</div>
+      </div>
+    </div>
+    <!-- Top-right 2 -->
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1545389336-cf090694435e?w=600&q=80')">
+      <div class="gallery-item-overlay"></div>
+      <div class="gallery-item-label">
+        <div class="gl-tag">Meditation</div>
+        <div class="gl-title">Morning Practice Sessions</div>
+      </div>
+    </div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80')">
+      <div class="gallery-item-overlay"></div>
+      <div class="gallery-item-label">
+        <div class="gl-tag">Fitness</div>
+        <div class="gl-title">Dance & Movement Workshops</div>
+      </div>
+    </div>
+    <!-- Bottom-right 2 -->
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80')">
+      <div class="gallery-item-overlay"></div>
+      <div class="gallery-item-label">
+        <div class="gl-tag">Awards</div>
+        <div class="gl-title">Sattva Iconic Wellness Awards</div>
+      </div>
+    </div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=600&q=80')">
+      <div class="gallery-item-overlay"></div>
+      <div class="gallery-item-label">
+        <div class="gl-tag">Healing</div>
+        <div class="gl-title">Holistic Healing Experiences</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENTORS -->
+<section class="mentors" id="mentors">
+  <div class="section-header" style="text-align:center;max-width:600px;margin:0 auto 3rem;">
+    <span class="section-tag">Our Experts</span>
+    <h2 class="section-title">Guided by <em>Inspiring</em> Minds</h2>
+    <p style="font-size:0.95rem;color:var(--text-mid);line-height:1.7;font-weight:300;">
+      Learn from passionate leaders across health, psychology, finance, creativity, and beyond.
+    </p>
+  </div>
+  <div class="mentors-grid">
+
+    <div class="mentor-card">
+      <div class="mentor-photo" style="background-image:url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80')">
+        <div class="mentor-photo-overlay"></div>
+        <span class="mentor-badge">Holistic Health</span>
+      </div>
+      <div class="mentor-body">
+        <div class="mentor-name">Dr. Ananya Sharma</div>
+        <div class="mentor-field">Wellness &amp; Nutrition</div>
+        <div class="mentor-bio">15+ years guiding individuals toward balanced health through integrative medicine and mindful living.</div>
+        <div class="mentor-socials">
+          <a class="mentor-social-btn" href="#">in</a>
+          <a class="mentor-social-btn" href="#">tw</a>
+          <a class="mentor-social-btn" href="#">ig</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentor-card">
+      <div class="mentor-photo" style="background-image:url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80')">
+        <div class="mentor-photo-overlay"></div>
+        <span class="mentor-badge">Mind &amp; Soul</span>
+      </div>
+      <div class="mentor-body">
+        <div class="mentor-name">Arjun Mehta</div>
+        <div class="mentor-field">Mindfulness Coach</div>
+        <div class="mentor-bio">Certified meditation teacher helping professionals find calm and clarity in busy modern lives.</div>
+        <div class="mentor-socials">
+          <a class="mentor-social-btn" href="#">in</a>
+          <a class="mentor-social-btn" href="#">tw</a>
+          <a class="mentor-social-btn" href="#">ig</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentor-card">
+      <div class="mentor-photo" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80')">
+        <div class="mentor-photo-overlay"></div>
+        <span class="mentor-badge">Finance</span>
+      </div>
+      <div class="mentor-body">
+        <div class="mentor-name">Priya Kapoor</div>
+        <div class="mentor-field">Financial Wellness Advisor</div>
+        <div class="mentor-bio">Empowering women and families to build financial confidence and sustainable wealth habits.</div>
+        <div class="mentor-socials">
+          <a class="mentor-social-btn" href="#">in</a>
+          <a class="mentor-social-btn" href="#">tw</a>
+          <a class="mentor-social-btn" href="#">ig</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentor-card">
+      <div class="mentor-photo" style="background-image:url('https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=400&q=80')">
+        <div class="mentor-photo-overlay"></div>
+        <span class="mentor-badge">Environment</span>
+      </div>
+      <div class="mentor-body">
+        <div class="mentor-name">Rohit Nair</div>
+        <div class="mentor-field">Nature &amp; Eco Wellness</div>
+        <div class="mentor-bio">Connecting communities to nature through mindful outdoor experiences and sustainability education.</div>
+        <div class="mentor-socials">
+          <a class="mentor-social-btn" href="#">in</a>
+          <a class="mentor-social-btn" href="#">tw</a>
+          <a class="mentor-social-btn" href="#">ig</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:center;margin-top:2.5rem;">
+    <a href="#contact" class="btn-primary" style="font-size:0.88rem;">Join Our Expert Community</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <span style="display:inline-block;font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;color:#f8bbd0;margin-bottom:1rem;">Get In Touch</span>
+      <h2>Let's <em style="font-style:italic;color:#f48fb1;">Connect</em></h2>
+      <p>
+        Whether you're an influencer, speaker, sponsor, collaborator, or simply looking to join the Sattva Nation community — we'd love to hear from you.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:0.8rem;">
+        <div style="display:flex;align-items:center;gap:0.8rem;color:#fce4ec;font-size:0.9rem;">
+          <span style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">📍</span>
+          New Delhi, India
+        </div>
+        <div style="display:flex;align-items:center;gap:0.8rem;color:#fce4ec;font-size:0.9rem;">
+          <span style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">✉️</span>
+          hello@sattvanation.com
+        </div>
+        <div style="display:flex;align-items:center;gap:0.8rem;color:#fce4ec;font-size:0.9rem;">
+          <span style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">📱</span>
+          @sattvanation
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="return false;">
+      <div class="form-row">
+        <input class="form-input" type="text" placeholder="Your Name">
+        <input class="form-input" type="email" placeholder="Email Address">
+      </div>
+      <input class="form-input" type="text" placeholder="I am a... (Speaker / Sponsor / Collaborator)">
+      <textarea class="form-input form-textarea" placeholder="What's on your mind?"></textarea>
+      <button class="btn-white" type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- Social Wellness Modal -->
+<div class="modal-overlay" id="socialModal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <h3 class="modal-title">Social Wellness</h3>
+    <div class="modal-body">
+      <p>Human beings are naturally social, and the relationships we build with others play an important role in our overall well-being.</p>
+      <p>Building healthy, supportive, and meaningful connections helps us navigate life's challenges with greater confidence and emotional balance. Social wellness is about creating positive relationships, communicating effectively, and maintaining strong connections with the people around us.</p>
+      <p>Maintaining a healthy balance between personal, social, and professional life requires conscious effort and understanding. It also involves respecting the needs of your loved ones, nurturing relationships, and making the people in your life feel valued and appreciated.</p>
+      <p>Strong social wellness encourages better communication, emotional support, self-confidence, and a greater sense of belonging.</p>
+      <p><strong>Why Is Sattva Nation's Social Wellness Important?</strong></p>
+      <p>Strong social wellness helps individuals build confidence, emotional strength, and meaningful relationships. Healthy social connections make life more fulfilling and help people feel supported during both good and challenging times.</p>
+      <p>Developing the right social skills allows individuals to communicate better, form deeper connections, and improve their self-esteem. A positive and supportive social network not only broadens your perspective but also helps you grow emotionally and socially.</p>
+      <p>At Sattva Nation, we help individuals develop healthy social habits, positive communication skills, and meaningful interpersonal connections that contribute towards overall well-being and emotional resilience.</p>
+      <p><strong>Our social wellness programs include:</strong></p>
+      <ul>
+        <li>Beneficial Social Networking</li>
+        <li>Marathons</li>
+        <li>Community Workshops</li>
+        <li>Building Supportive Intimate Network</li>
+      </ul>
+      <p>Since every individual is unique, Sattva Nation believes in creating personalized wellness plans designed according to individual needs and lifestyles. Programs may include residential workshops, weekly in-person sessions, or online classes.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SattvaNation</div>
+  <ul class="footer-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Programmes</a></li>
+    <li><a href="#">Events</a></li>
+    <li><a href="#">Mentors</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Sattva Nation. Celebrate Life.</div>
+</footer>
+
+</body>
+</html>
