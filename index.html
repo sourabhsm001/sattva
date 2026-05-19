@@ -1167,30 +1167,6 @@ carousel.addEventListener('touchend', e => {
   // Kick off
   startAuto();
   resetProgress();
-
-  // Social Wellness Modal
-  const socialModal = document.getElementById('socialModal');
-  const modalClose = document.getElementById('modalClose');
-  const socialTriggers = document.querySelectorAll('.social-modal-trigger');
-
-  socialTriggers.forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      socialModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  modalClose.addEventListener('click', () => {
-    socialModal.classList.remove('active');
-    document.body.style.overflow = '';
-  });
-
-  socialModal.addEventListener('click', (e) => {
-    if (e.target === socialModal) {
-      socialModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
 })();
 </script>
 
@@ -1610,6 +1586,34 @@ carousel.addEventListener('touchend', e => {
     </div>
   </div>
 </div>
+
+<script>
+(function() {
+  const socialModal = document.getElementById('socialModal');
+  const modalClose = document.getElementById('modalClose');
+  const socialTriggers = document.querySelectorAll('.social-modal-trigger');
+
+  socialTriggers.forEach(trigger => {
+    trigger.addEventListener('click', e => {
+      e.preventDefault();
+      socialModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  modalClose.addEventListener('click', () => {
+    socialModal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  socialModal.addEventListener('click', e => {
+    if (e.target === socialModal) {
+      socialModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+})();
+</script>
 
 <!-- FOOTER -->
 <footer>
