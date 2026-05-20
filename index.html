@@ -42,13 +42,14 @@
     border-bottom: 1px solid #f4c0d1;
   }
   .logo {
-    font-family: var(--serif);
-    font-size: 1.55rem;
-    font-weight: 700;
-    color: var(--pink-deep);
-    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .logo span { color: var(--text-dark); }
+  .logo-img {
+    height: 40px;
+    width: auto;
+  }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
     text-decoration: none;
@@ -949,7 +950,9 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">Sattva<span>Nation</span></div>
+  <div class="logo">
+    <img src="https://flourishing-narwhal-c54b2c.netlify.app/assets/sattvalogo123.png" alt="Sattva Nation Logo" class="logo-img" />
+  </div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#wellness">Wellness</a></li>
