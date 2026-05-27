@@ -1,1 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us – Sattva Nation</title>
+<meta name="description" content="Learn about Sattva Nation — India's holistic wellness platform rooted in the philosophy of Sattva: purity, balance, and inner harmony.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+  :root {
+    --pink-deep: #c2185b;
+    --pink-mid: #d4537e;
+    --pink-soft: #f06292;
+    --pink-light: #fce4ec;
+    --pink-pale: #fdf0f5;
+    --white: #ffffff;
+    --text-dark: #2d1a24;
+    --text-mid: #6b3a50;
+    --text-muted: #a06080;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #f4c0d1;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-img {
+    height: 40px;
+    width: auto;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--pink-deep); }
+  .nav-links a.active-page { color: var(--pink-deep); }
+  .nav-cta {
+    background: var(--pink-deep);
+    color: white !important;
+    padding: 0.5rem 1.3rem;
+    border-radius: 50px;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.06em !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: #a31150 !important; transform: translateY(-1px); }
+
+  /* PAGE HERO */
+  .page-hero {
+    position: relative;
+    width: 100%;
+    min-height: 52vh;
+    background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+  .page-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      120deg,
+      rgba(30, 5, 18, 0.78) 0%,
+      rgba(194, 24, 91, 0.38) 55%,
+      rgba(10, 2, 8, 0.55) 100%
+    );
+  }
+  .page-hero-content {
+    position: relative; z-index: 2;
+    max-width: 700px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .page-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #f8bbd0;
+    margin-bottom: 1.4rem;
+  }
+  .page-hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px; height: 1.5px;
+    background: var(--pink-soft);
+  }
+  .page-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 1.1rem;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.3);
+  }
+  .page-hero h1 em { font-style: italic; color: #f48fb1; }
+  .page-hero p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.82);
+    font-weight: 300;
+    max-width: 480px;
+  }
+  /* Breadcrumb */
+  .breadcrumb {
+    position: absolute;
+    bottom: 1.8rem; left: 8%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.76rem;
+    color: rgba(255,255,255,0.55);
+  }
+  .breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: #f48fb1; }
+  .breadcrumb span { color: rgba(255,255,255,0.85); }
+  .breadcrumb .sep { margin: 0 2px; }
+
+  /* SHARED STYLES */
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--pink-deep);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 3vw, 2.8rem);
+    line-height: 1.18;
+    color: var(--text-dark);
+    margin-bottom: 1.2rem;
+  }
+  .section-title em { font-style: italic; color: var(--pink-deep); }
+  .section-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+  .btn-primary {
+    background: var(--pink-deep);
+    color: white;
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #a31150; transform: translateY(-2px); }
+
+  /* STORY SECTION */
+  .story {
+    padding: 6rem 5%;
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .story-visual {
+    position: relative;
+  }
+  .story-img-main {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 28px;
+    display: block;
+    background-image: url('https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=80');
+    background-size: cover;
+    background-position: center;
+  }
+  .story-img-float {
+    position: absolute;
+    bottom: -2rem;
+    right: -2rem;
+    width: 190px;
+    height: 190px;
+    border-radius: 22px;
+    background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&q=80');
+    background-size: cover;
+    background-position: center;
+    border: 4px solid white;
+    box-shadow: 0 12px 40px rgba(194,24,91,0.18);
+  }
+  .story-badge {
+    position: absolute;
+    top: 2rem;
+    left: -1.5rem;
+    background: var(--pink-deep);
+    color: white;
+    border-radius: 16px;
+    padding: 1rem 1.4rem;
+    box-shadow: 0 8px 24px rgba(194,24,91,0.3);
+  }
+  .story-badge-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .story-badge-lbl {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
+
+  /* MISSION STRIP */
+  .mission-strip {
+    background: var(--pink-pale);
+    padding: 4rem 5%;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .mission-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex: 1;
+    min-width: 220px;
+    max-width: 300px;
+  }
+  .mission-icon {
+    width: 54px; height: 54px;
+    border-radius: 16px;
+    background: white;
+    border: 1px solid #f4c0d1;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(194,24,91,0.08);
+  }
+  .mission-text-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.2rem;
+  }
+  .mission-text-sub {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .mission-divider {
+    width: 1px; height: 60px;
+    background: #f4c0d1;
+    flex-shrink: 0;
+  }
+
+  /* 8 DIMENSIONS */
+  .dimensions {
+    padding: 6rem 5%;
+    background: var(--white);
+  }
+  .dimensions-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3.5rem;
+  }
+  .dimensions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+  .dim-card {
+    border-radius: 22px;
+    padding: 1.8rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.22s, box-shadow 0.22s;
+    cursor: default;
+  }
+  .dim-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(194,24,91,0.13);
+  }
+  .dim-card.style-pale { background: var(--pink-pale); border: 1px solid #f4c0d1; }
+  .dim-card.style-pink { background: var(--pink-deep); }
+  .dim-card.style-light { background: var(--pink-light); border: 1px solid #f4c0d1; }
+  .dim-card.style-border { background: white; border: 1.5px solid #f4c0d1; }
+  .dim-emoji { font-size: 2rem; margin-bottom: 0.9rem; display: block; }
+  .dim-name {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.45rem;
+    line-height: 1.2;
+  }
+  .dim-card.style-pink .dim-name { color: white; }
+  .dim-card:not(.style-pink) .dim-name { color: var(--text-dark); }
+  .dim-desc {
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+  .dim-card.style-pink .dim-desc { color: #fce4ec; }
+  .dim-card:not(.style-pink) .dim-desc { color: var(--text-muted); }
+  .dim-bg-num {
+    position: absolute;
+    bottom: -10px; right: -4px;
+    font-family: var(--serif);
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.1;
+    color: var(--pink-deep);
+  }
+  .dim-card.style-pink .dim-bg-num { color: white; opacity: 0.2; }
+
+  /* PHILOSOPHY SECTION */
+  .philosophy {
+    padding: 6rem 5%;
+    background: var(--pink-deep);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .philosophy::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .philosophy::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -80px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .philosophy-inner {
+    position: relative; z-index: 2;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .philosophy .section-tag { color: #f8bbd0; }
+  .philosophy .section-title { color: white; }
+  .philosophy .section-title em { color: #f48fb1; }
+  .philosophy-quote {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-style: italic;
+    color: white;
+    line-height: 1.4;
+    margin: 2rem 0;
+    padding: 0 2rem;
+    position: relative;
+  }
+  .philosophy-quote::before, .philosophy-quote::after {
+    content: '"';
+    font-size: 4rem;
+    color: rgba(255,255,255,0.2);
+    font-family: var(--serif);
+    position: absolute;
+    line-height: 1;
+  }
+  .philosophy-quote::before { top: -0.5rem; left: 0; }
+  .philosophy-quote::after { content: '"'; bottom: -1.5rem; right: 0; }
+  .philosophy-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.8);
+    font-weight: 300;
+    margin-top: 2rem;
+  }
+  .philosophy-tags {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+  }
+  .phil-tag {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50px;
+    padding: 0.45rem 1.2rem;
+    font-size: 0.8rem;
+    color: white;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+  }
+
+  /* VALUES SECTION */
+  .values {
+    padding: 6rem 5%;
+    background: var(--pink-pale);
+  }
+  .values-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3.5rem;
+  }
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.4rem;
+  }
+  .value-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2.4rem 2rem;
+    border: 1px solid #f4c0d1;
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+  .value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 44px rgba(194,24,91,0.11);
+  }
+  .value-num {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 700;
+    color: #f4c0d1;
+    line-height: 1;
+    margin-bottom: -0.5rem;
+  }
+  .value-icon { font-size: 1.8rem; margin-bottom: 0.9rem; display: block; }
+  .value-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.7rem;
+  }
+  .value-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-mid);
+    font-weight: 300;
+  }
+
+  /* CTA BANNER */
+  .cta-banner {
+    padding: 5rem 5%;
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+    border-top: 1px solid #f4c0d1;
+    border-bottom: 1px solid #f4c0d1;
+  }
+  .cta-tagline {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    color: var(--text-dark);
+    line-height: 1.2;
+  }
+  .cta-tagline em { font-style: italic; color: var(--pink-deep); }
+  .cta-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-top: 0.7rem;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+  .cta-btns { display: flex; gap: 1rem; flex-shrink: 0; }
+  .btn-outline-dark {
+    background: transparent;
+    color: var(--pink-deep);
+    border: 1.5px solid var(--pink-mid);
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-outline-dark:hover { background: var(--pink-light); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--text-dark);
+    color: #c9899c;
+    padding: 3rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: white;
+  }
+  .footer-links { display: flex; gap: 1.8rem; list-style: none; }
+  .footer-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    color: #c9899c;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: #f48fb1; }
+  .footer-copy { font-size: 0.78rem; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .story { grid-template-columns: 1fr; gap: 3rem; }
+    .story-visual { order: -1; }
+    .story-badge { left: 1rem; }
+    .story-img-float { right: 1rem; bottom: -1.5rem; width: 140px; height: 140px; }
+    .dimensions-grid { grid-template-columns: repeat(2, 1fr); }
+    .values-grid { grid-template-columns: 1fr; }
+    .cta-banner { grid-template-columns: 1fr; }
+    .mission-divider { display: none; }
+  }
+  @media (max-width: 620px) {
+    .nav-links { gap: 1rem; }
+    .nav-links li:not(:last-child):not(:first-child) { display: none; }
+    .dimensions-grid { grid-template-columns: 1fr 1fr; }
+    .page-hero { min-height: 60vh; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <img src="https://flourishing-narwhal-c54b2c.netlify.app/assets/sattvalogo123.png" alt="Sattva Nation Logo" class="logo-img" />
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#" class="active-page">About</a></li>
+    <li><a href="index.html#wellness">Wellness</a></li>
+    <li><a href="index.html#events">Events</a></li>
+    <li><a href="index.html#mentors">Mentors</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <span class="page-hero-eyebrow">Our Story</span>
+    <h1>About <em>Sattva Nation</em></h1>
+    <p>Embrace Your Sattva. Celebrate Life.</p>
+  </div>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span>About Us</span>
+  </div>
+</section>
+
+<!-- STORY SECTION -->
+<section class="story" id="about">
+  <div class="story-text reveal">
+    <span class="section-tag">Who We Are</span>
+    <h2 class="section-title">Wellness beyond <em>fitness</em> — a way of life</h2>
+    <p class="section-body">
+      At Sattva Nation, we believe wellness is not just about fitness or meditation — it's about creating balance in every aspect of life.
+    </p>
+    <p class="section-body">
+      In today's fast-paced world, people often forget to pause, reconnect, and take care of themselves. Sattva Nation was created to bring people closer to mindful living through meaningful wellness experiences, workshops, retreats, and community-driven events.
+    </p>
+    <p class="section-body">
+      Through expert-led programs, transformative experiences, and conscious conversations, we aim to inspire healthier, happier, and more balanced lifestyles. Sattva Nation is more than a wellness platform — it is a growing community that celebrates growth, connection, and holistic living.
+    </p>
+    <a href="index.html#contact" class="btn-primary">Join Our Community</a>
+  </div>
+  <div class="story-visual reveal">
+    <div class="story-img-main"></div>
+    <div class="story-img-float"></div>
+    <div class="story-badge">
+      <div class="story-badge-num">8</div>
+      <div class="story-badge-lbl">Dimensions<br>of Wellness</div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION STRIP -->
+<div class="mission-strip">
+  <div class="mission-item reveal">
+    <div class="mission-icon">🌿</div>
+    <div>
+      <div class="mission-text-title">Our Mission</div>
+      <div class="mission-text-sub">Inspire balanced, mindful, and fulfilling lifestyles</div>
+    </div>
+  </div>
+  <div class="mission-divider"></div>
+  <div class="mission-item reveal">
+    <div class="mission-icon">🤝</div>
+    <div>
+      <div class="mission-text-title">Our Community</div>
+      <div class="mission-text-sub">A growing tribe celebrating growth and connection</div>
+    </div>
+  </div>
+  <div class="mission-divider"></div>
+  <div class="mission-item reveal">
+    <div class="mission-icon">✨</div>
+    <div>
+      <div class="mission-text-title">Our Promise</div>
+      <div class="mission-text-sub">Transformative experiences guided by trusted experts</div>
+    </div>
+  </div>
+  <div class="mission-divider"></div>
+  <div class="mission-item reveal">
+    <div class="mission-icon">🇮🇳</div>
+    <div>
+      <div class="mission-text-title">Rooted In India</div>
+      <div class="mission-text-sub">Bringing ancient wisdom into modern daily life</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8 DIMENSIONS -->
+<section class="dimensions">
+  <div class="dimensions-header reveal">
+    <span class="section-tag">Our Philosophy</span>
+    <h2 class="section-title">The <em>8 Dimensions</em> of Wellness</h2>
+    <p style="font-size:0.95rem;color:var(--text-mid);line-height:1.75;font-weight:300;">
+      Rooted in the philosophy of Sattva — purity, balance, and inner harmony — we focus on every aspect of human flourishing.
+    </p>
+  </div>
+  <div class="dimensions-grid">
+    <div class="dim-card style-pale reveal">
+      <span class="dim-emoji">💪</span>
+      <div class="dim-name">Physical</div>
+      <div class="dim-desc">Nurturing your body through movement, nutrition, rest, and vitality.</div>
+      <div class="dim-bg-num">01</div>
+    </div>
+    <div class="dim-card style-pink reveal">
+      <span class="dim-emoji">🧠</span>
+      <div class="dim-name">Mental</div>
+      <div class="dim-desc">Cultivating clarity, focus, resilience, and a peaceful mind.</div>
+      <div class="dim-bg-num">02</div>
+    </div>
+    <div class="dim-card style-border reveal">
+      <span class="dim-emoji">💛</span>
+      <div class="dim-name">Emotional</div>
+      <div class="dim-desc">Understanding, processing, and embracing your inner emotional landscape.</div>
+      <div class="dim-bg-num">03</div>
+    </div>
+    <div class="dim-card style-light reveal">
+      <span class="dim-emoji">🤝</span>
+      <div class="dim-name">Social</div>
+      <div class="dim-desc">Building meaningful bonds and nurturing community connections.</div>
+      <div class="dim-bg-num">04</div>
+    </div>
+    <div class="dim-card style-light reveal">
+      <span class="dim-emoji">💰</span>
+      <div class="dim-name">Financial</div>
+      <div class="dim-desc">Developing healthy financial habits and a mindset of abundance.</div>
+      <div class="dim-bg-num">05</div>
+    </div>
+    <div class="dim-card style-border reveal">
+      <span class="dim-emoji">🎯</span>
+      <div class="dim-name">Occupational</div>
+      <div class="dim-desc">Finding purpose, satisfaction, and growth in your life's work.</div>
+      <div class="dim-bg-num">06</div>
+    </div>
+    <div class="dim-card style-pink reveal">
+      <span class="dim-emoji">📚</span>
+      <div class="dim-name">Intellectual</div>
+      <div class="dim-desc">Expanding your mind through curiosity, creativity, and lifelong learning.</div>
+      <div class="dim-bg-num">07</div>
+    </div>
+    <div class="dim-card style-pale reveal">
+      <span class="dim-emoji">🌍</span>
+      <div class="dim-name">Environmental</div>
+      <div class="dim-desc">Living in harmony with nature and making conscious choices for the planet.</div>
+      <div class="dim-bg-num">08</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY / QUOTE SECTION -->
+<section class="philosophy">
+  <div class="philosophy-inner reveal">
+    <span class="section-tag">Our Foundation</span>
+    <h2 class="section-title">The Meaning of <em>Sattva</em></h2>
+    <div class="philosophy-quote">
+      Pause. Reconnect. Grow.
+    </div>
+    <p class="philosophy-body">
+      Sattva — in the ancient wisdom of yoga and Ayurveda — represents the quality of purity, balance, and inner harmony. It is the state where clarity emerges, where peace settles in, and where life is experienced at its fullest.
+    </p>
+    <p class="philosophy-body" style="margin-top:1rem;">
+      At Sattva Nation, this philosophy is not just a name — it is our compass. Every programme, retreat, workshop, and conversation we create is guided by this deep commitment to helping individuals return to their truest, most balanced selves.
+    </p>
+    <div class="philosophy-tags">
+      <span class="phil-tag">Purity</span>
+      <span class="phil-tag">Balance</span>
+      <span class="phil-tag">Inner Harmony</span>
+      <span class="phil-tag">Mindful Living</span>
+      <span class="phil-tag">Holistic Growth</span>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="values-header reveal">
+    <span class="section-tag">What Guides Us</span>
+    <h2 class="section-title">Our Core <em>Values</em></h2>
+    <p style="font-size:0.95rem;color:var(--text-mid);line-height:1.75;font-weight:300;">
+      These principles shape every experience we create and every community we nurture.
+    </p>
+  </div>
+  <div class="values-grid">
+    <div class="value-card reveal">
+      <div class="value-num">01</div>
+      <span class="value-icon">🌱</span>
+      <div class="value-title">Conscious Living</div>
+      <div class="value-desc">We believe every small, mindful choice leads to a life of greater meaning. We encourage awareness, intentionality, and presence in daily life.</div>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-num">02</div>
+      <span class="value-icon">🔗</span>
+      <div class="value-title">Community & Connection</div>
+      <div class="value-desc">Growth happens together. We create safe, inclusive spaces where people feel seen, heard, and supported on their wellness journeys.</div>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-num">03</div>
+      <span class="value-icon">🏆</span>
+      <div class="value-title">Transformative Excellence</div>
+      <div class="value-desc">We partner with passionate experts and thought leaders to deliver programmes that genuinely move people — not just entertain them.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="reveal">
+    <div class="cta-tagline">Ready to begin your <em>wellness journey?</em></div>
+    <div class="cta-sub">Join thousands embracing a more balanced, purposeful, and joyful way of living.</div>
+  </div>
+  <div class="cta-btns reveal">
+    <a href="index.html#contact" class="btn-primary">Connect With Us</a>
+    <a href="index.html#wellness" class="btn-outline-dark">Explore Programmes</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SattvaNation</div>
+  <ul class="footer-links">
+    <li><a href="#">About</a></li>
+    <li><a href="index.html#wellness">Programmes</a></li>
+    <li><a href="index.html#events">Events</a></li>
+    <li><a href="index.html#mentors">Mentors</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Sattva Nation. Celebrate Life.</div>
+</footer>
+
+<script>
+// Scroll reveal animation
+(function() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+})();
+</script>
+
+</body>
+</html>
