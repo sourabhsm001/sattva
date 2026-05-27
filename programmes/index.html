@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellness Programmes – Sattva Nation</title>
+<meta name="description" content="Explore Sattva Nation's 8 dimensions of wellness programmes — physical, mental, emotional, social, financial, occupational, intellectual, and environmental wellbeing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --pink-deep: #c2185b;
+    --pink-mid: #d4537e;
+    --pink-soft: #f06292;
+    --pink-light: #fce4ec;
+    --pink-pale: #fdf0f5;
+    --white: #ffffff;
+    --text-dark: #2d1a24;
+    --text-mid: #6b3a50;
+    --text-muted: #a06080;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--white); color: var(--text-dark); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #f4c0d1;
+  }
+  .logo { display: flex; align-items: center; }
+  .logo-img { height: 40px; width: auto; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.88rem; font-weight: 500;
+    color: var(--text-mid); letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active-page { color: var(--pink-deep); }
+  .nav-cta {
+    background: var(--pink-deep); color: white !important;
+    padding: 0.5rem 1.3rem; border-radius: 50px;
+    font-size: 0.82rem !important; letter-spacing: 0.06em !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: #a31150 !important; transform: translateY(-1px); }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    position: relative; width: 100%; min-height: 56vh;
+    background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&q=80');
+    background-size: cover; background-position: center;
+    display: flex; align-items: center;
+    padding: 0 8%; padding-top: 80px; overflow: hidden;
+  }
+  .page-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(120deg, rgba(30,5,18,0.82) 0%, rgba(194,24,91,0.4) 55%, rgba(10,2,8,0.6) 100%);
+  }
+  .page-hero-content { position: relative; z-index: 2; max-width: 720px; animation: fadeUp 0.8s ease both; }
+  .page-hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.16em; color: #f8bbd0; margin-bottom: 1.4rem;
+  }
+  .page-hero-eyebrow::before { content:''; display:block; width:32px; height:1.5px; background:var(--pink-soft); }
+  .page-hero h1 {
+    font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 4.2rem);
+    line-height: 1.1; color: #fff; margin-bottom: 1.1rem;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.3);
+  }
+  .page-hero h1 em { font-style: italic; color: #f48fb1; }
+  .page-hero p { font-size: 1.05rem; line-height: 1.75; color: rgba(255,255,255,0.82); font-weight: 300; max-width: 540px; }
+  .breadcrumb {
+    position: absolute; bottom: 1.8rem; left: 8%; z-index: 2;
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.76rem; color: rgba(255,255,255,0.55);
+  }
+  .breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: #f48fb1; }
+  .breadcrumb span { color: rgba(255,255,255,0.85); }
+
+  /* ── SHARED ── */
+  .section-tag {
+    display: inline-block; font-size: 0.75rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--pink-deep); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(1.9rem, 3vw, 2.8rem);
+    line-height: 1.18; color: var(--text-dark); margin-bottom: 1.2rem;
+  }
+  .section-title em { font-style: italic; color: var(--pink-deep); }
+
+  /* ── INTRO ── */
+  .intro {
+    padding: 5rem 5% 4rem;
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .intro-body { font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300; margin-bottom: 1.2rem; }
+  .intro-pull {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--pink-deep);
+    border-left: 3px solid var(--pink-soft);
+    padding-left: 1.2rem;
+    margin: 1.5rem 0;
+    line-height: 1.6;
+  }
+  .intro-visual {
+    background: var(--pink-pale);
+    border-radius: 28px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .intro-visual::before {
+    content: 'WELLNESS';
+    position: absolute; font-family: var(--serif); font-size: 4.5rem; font-weight: 700;
+    color: #f4c0d1; opacity: 0.35; top: -8px; right: -8px; letter-spacing: -2px;
+  }
+  .dim-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; position: relative; z-index:1; }
+  .dim-pill {
+    background: white; border-radius: 14px; border: 1px solid #f4c0d1;
+    padding: 0.85rem 1rem;
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.85rem; font-weight: 500; color: var(--text-dark);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .dim-pill:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(194,24,91,0.12); }
+  .dim-pill.highlight { background: var(--pink-deep); border-color: var(--pink-deep); color: white; }
+  .dim-pill-icon { font-size: 1.2rem; }
+
+  /* ── DIMENSION NAV TABS ── */
+  .dim-nav {
+    background: var(--pink-pale);
+    padding: 1.5rem 5%;
+    position: sticky; top: 64px; z-index: 50;
+    border-bottom: 1px solid #f4c0d1;
+    border-top: 1px solid #f4c0d1;
+  }
+  .dim-nav-inner {
+    display: flex; gap: 0.5rem; overflow-x: auto;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .dim-nav-inner::-webkit-scrollbar { display: none; }
+  .dim-tab {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.5rem 1.1rem; border-radius: 50px; border: 1.5px solid #f4c0d1;
+    background: white; font-size: 0.8rem; font-weight: 500;
+    color: var(--text-mid); white-space: nowrap; cursor: pointer;
+    transition: all 0.2s; text-decoration: none; flex-shrink: 0;
+  }
+  .dim-tab:hover { border-color: var(--pink-mid); color: var(--pink-deep); }
+  .dim-tab.active { background: var(--pink-deep); border-color: var(--pink-deep); color: white; }
+
+  /* ── DIMENSION SECTIONS ── */
+  .dimension-section {
+    padding: 6rem 5%;
+    scroll-margin-top: 130px;
+  }
+  .dimension-section:nth-child(odd) { background: var(--white); }
+  .dimension-section:nth-child(even) { background: var(--pink-pale); }
+
+  .dim-section-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .dim-section-inner.reverse { direction: rtl; }
+  .dim-section-inner.reverse > * { direction: ltr; }
+
+  .dim-header { margin-bottom: 1.8rem; }
+  .dim-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--pink-light); border: 1px solid #f4c0d1;
+    border-radius: 50px; padding: 0.4rem 1rem;
+    font-size: 0.75rem; font-weight: 500; color: var(--pink-deep);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem;
+  }
+  .dim-title {
+    font-family: var(--serif); font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+    line-height: 1.15; color: var(--text-dark); margin-bottom: 0.8rem;
+  }
+  .dim-title em { font-style: italic; color: var(--pink-deep); }
+  .dim-quote {
+    font-family: var(--serif); font-style: italic;
+    font-size: 0.92rem; color: var(--pink-mid);
+    border-left: 2px solid var(--pink-soft);
+    padding-left: 1rem; margin: 1.2rem 0; line-height: 1.6;
+  }
+  .dim-body { font-size: 0.95rem; line-height: 1.85; color: var(--text-mid); font-weight: 300; margin-bottom: 1rem; }
+  .dim-subheading {
+    font-family: var(--serif); font-size: 1rem; font-weight: 600;
+    color: var(--text-dark); margin: 1.5rem 0 0.6rem;
+  }
+
+  /* Program list */
+  .prog-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin: 1.2rem 0 1.8rem; }
+  .prog-list li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.9rem; color: var(--text-mid); line-height: 1.55;
+  }
+  .prog-list li::before {
+    content: '';
+    width: 18px; height: 18px; flex-shrink: 0;
+    border-radius: 50%; background: var(--pink-light);
+    border: 1.5px solid #f4c0d1; margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .prog-list li::before {
+    background: radial-gradient(circle, var(--pink-deep) 0%, var(--pink-deep) 35%, var(--pink-light) 36%, var(--pink-light) 100%);
+    border: 1.5px solid #f4c0d1;
+  }
+
+  /* CTA buttons */
+  .dim-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.8rem; }
+  .btn-primary {
+    background: var(--pink-deep); color: white; border: none;
+    padding: 0.78rem 1.8rem; border-radius: 50px; font-family: var(--sans);
+    font-size: 0.88rem; font-weight: 500; cursor: pointer; letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s; text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: #a31150; transform: translateY(-2px); }
+  .btn-outline-pink {
+    background: transparent; color: var(--pink-deep);
+    border: 1.5px solid var(--pink-mid); padding: 0.78rem 1.8rem;
+    border-radius: 50px; font-family: var(--sans); font-size: 0.88rem; font-weight: 500;
+    cursor: pointer; letter-spacing: 0.04em; text-decoration: none; display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-outline-pink:hover { background: var(--pink-light); transform: translateY(-2px); }
+
+  /* Visual card / image panel */
+  .dim-visual-wrap { position: relative; }
+  .dim-main-img {
+    width: 100%; height: 420px; border-radius: 24px;
+    background-size: cover; background-position: center;
+    box-shadow: 0 12px 40px rgba(194,24,91,0.14);
+  }
+  .dim-float-card {
+    position: absolute; bottom: -1.8rem; left: -1.8rem;
+    background: white; border-radius: 18px;
+    border: 1px solid #f4c0d1;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 8px 28px rgba(194,24,91,0.14);
+    min-width: 200px;
+  }
+  .dim-float-card .fc-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.4rem; }
+  .dim-float-card .fc-items { display: flex; flex-direction: column; gap: 0.3rem; }
+  .dim-float-card .fc-item {
+    font-size: 0.82rem; font-weight: 500; color: var(--text-dark);
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .dim-float-card .fc-item::before { content: '✦'; font-size: 0.5rem; color: var(--pink-deep); }
+
+  /* Sub-program cards (for Financial with multiple workshops) */
+  .sub-prog-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 1.4rem 0 1.8rem; }
+  .sub-prog-card {
+    background: white; border-radius: 16px; border: 1px solid #f4c0d1;
+    padding: 1.2rem 1.4rem; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .dimension-section:nth-child(even) .sub-prog-card { background: white; }
+  .sub-prog-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(194,24,91,0.1); }
+  .sub-prog-name { font-family: var(--serif); font-size: 0.95rem; font-weight: 600; color: var(--text-dark); margin-bottom: 0.4rem; }
+  .sub-prog-desc { font-size: 0.82rem; line-height: 1.6; color: var(--text-muted); font-weight: 300; }
+
+  /* Key Focus pills (for environmental) */
+  .focus-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0 1.5rem; }
+  .focus-pill {
+    background: var(--pink-light); border: 1px solid #f4c0d1;
+    border-radius: 50px; padding: 0.4rem 1rem;
+    font-size: 0.8rem; font-weight: 500; color: var(--pink-deep);
+  }
+
+  /* ── BANNER CTA ── */
+  .cta-banner {
+    padding: 5rem 5%;
+    background: var(--pink-deep);
+    position: relative; overflow: hidden;
+    text-align: center;
+  }
+  .cta-banner::before {
+    content:''; position: absolute; top: -100px; right: -100px;
+    width: 400px; height: 400px; border-radius: 50%; background: rgba(255,255,255,0.05);
+  }
+  .cta-banner::after {
+    content:''; position: absolute; bottom: -80px; left: -60px;
+    width: 300px; height: 300px; border-radius: 50%; background: rgba(255,255,255,0.04);
+  }
+  .cta-inner { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
+  .cta-banner .section-tag { color: #f8bbd0; }
+  .cta-title { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.8rem); color: white; line-height: 1.2; margin-bottom: 1rem; }
+  .cta-title em { font-style: italic; color: #f48fb1; }
+  .cta-sub { font-size: 1rem; color: rgba(255,255,255,0.8); font-weight: 300; line-height: 1.7; margin-bottom: 2rem; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    background: white; color: var(--pink-deep); border: none;
+    padding: 0.9rem 2.2rem; border-radius: 50px; font-family: var(--sans);
+    font-size: 0.92rem; font-weight: 500; cursor: pointer; letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s; text-decoration: none; display: inline-block;
+  }
+  .btn-white:hover { background: #fce4ec; transform: translateY(-2px); }
+  .btn-outline-white {
+    background: rgba(255,255,255,0.1); color: white;
+    border: 1.5px solid rgba(255,255,255,0.45);
+    padding: 0.9rem 2.2rem; border-radius: 50px; font-family: var(--sans);
+    font-size: 0.92rem; font-weight: 500; cursor: pointer; letter-spacing: 0.04em;
+    transition: background 0.2s; text-decoration: none; display: inline-block;
+    backdrop-filter: blur(4px);
+  }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.2); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text-dark); color: #c9899c;
+    padding: 3rem 5%; display: flex;
+    align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; color: white; }
+  .footer-links { display: flex; gap: 1.8rem; list-style: none; }
+  .footer-links a { text-decoration: none; font-size: 0.82rem; color: #c9899c; transition: color 0.2s; }
+  .footer-links a:hover { color: #f48fb1; }
+  .footer-copy { font-size: 0.78rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+  .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .intro { grid-template-columns: 1fr; gap: 3rem; }
+    .dim-section-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .dim-section-inner.reverse { direction: ltr; }
+    .dim-visual-wrap { order: -1; }
+    .dim-main-img { height: 300px; }
+    .dim-float-card { left: 1rem; bottom: -1.2rem; }
+  }
+  @media (max-width: 640px) {
+    .nav-links li:not(:last-child):not(:first-child) { display: none; }
+    .dim-pills { grid-template-columns: 1fr; }
+    .page-hero { min-height: 60vh; }
+    .cta-btns { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <img src="https://flourishing-narwhal-c54b2c.netlify.app/assets/sattvalogo123.png" alt="Sattva Nation Logo" class="logo-img" />
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="#" class="active-page">Wellness</a></li>
+    <li><a href="index.html#events">Events</a></li>
+    <li><a href="index.html#mentors">Mentors</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <span class="page-hero-eyebrow">Holistic Living</span>
+    <h1>Wellness <em>Programmes</em></h1>
+    <p>Wellness is an active process of becoming aware of and making choices toward a healthy and fulfilling life. At Sattva Nation, we believe wellness is not one thing — it is many parts of life working together.</p>
+  </div>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span style="margin:0 4px;">›</span>
+    <span>Wellness Programmes</span>
+  </div>
+</section>
+
+<!-- STICKY DIM NAV -->
+<nav class="dim-nav">
+  <div class="dim-nav-inner">
+    <a href="#physical" class="dim-tab active">💪 Physical</a>
+    <a href="#mental" class="dim-tab">🧠 Mental</a>
+    <a href="#emotional" class="dim-tab">💛 Emotional</a>
+    <a href="#social" class="dim-tab">🤝 Social</a>
+    <a href="#financial" class="dim-tab">💰 Financial</a>
+    <a href="#occupational" class="dim-tab">🎯 Occupational</a>
+    <a href="#intellectual" class="dim-tab">📚 Intellectual</a>
+    <a href="#environmental" class="dim-tab">🌍 Environmental</a>
+  </div>
+</nav>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="reveal">
+    <span class="section-tag">Why Wellness Matters</span>
+    <h2 class="section-title">More than being free <em>from illness</em></h2>
+    <p class="intro-body">Maintaining an optimal level of wellness is crucial for living a high-quality life. Wellness affects everything we do and every emotion we feel, while our well-being directly influences our actions, thoughts, and emotions. It is an ongoing cycle.</p>
+    <div class="intro-pull">"Achieving optimal wellness is important to manage stress, reduce the risk of illness, and maintain positive interactions."</div>
+    <p class="intro-body">At Sattva Nation, we believe wellness is not one thing — it is many parts of life working together. That's why we focus on 8 dimensions of wellness that shape how you live, feel, think, and grow.</p>
+  </div>
+  <div class="intro-visual reveal">
+    <div class="dim-pills">
+      <div class="dim-pill"><span class="dim-pill-icon">💪</span> Physical</div>
+      <div class="dim-pill"><span class="dim-pill-icon">🧠</span> Mental</div>
+      <div class="dim-pill"><span class="dim-pill-icon">💛</span> Emotional</div>
+      <div class="dim-pill"><span class="dim-pill-icon">🤝</span> Social</div>
+      <div class="dim-pill highlight"><span class="dim-pill-icon">💰</span> Financial</div>
+      <div class="dim-pill"><span class="dim-pill-icon">🎯</span> Occupational</div>
+      <div class="dim-pill"><span class="dim-pill-icon">📚</span> Intellectual</div>
+      <div class="dim-pill"><span class="dim-pill-icon">🌍</span> Environmental</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 1. PHYSICAL ── -->
+<section class="dimension-section" id="physical">
+  <div class="dim-section-inner">
+    <div class="reveal">
+      <div class="dim-header">
+        <div class="dim-badge">💪 Dimension 01</div>
+        <h2 class="dim-title">Physical <em>Wellness</em></h2>
+        <div class="dim-quote">"Take care of your body, it is the only place you have to live." — Jim Rohn</div>
+      </div>
+      <p class="dim-body">A healthy body supports a healthy mind. To unlock your true potential, physical wellness plays a very important role. A balanced lifestyle that includes regular physical activity, proper nutrition, and mental well-being helps maintain overall health and fitness.</p>
+      <p class="dim-body">Physical wellness is not just about improving your appearance — it is also about feeling healthy, confident, and balanced from within. Sattva Nation offers thoughtfully designed programs to support your wellness journey.</p>
+      <div class="dim-subheading">Our Physical Wellness Programs</div>
+      <ul class="prog-list">
+        <li>Dance Fitness Sessions (Bhangra, Zumba, and more)</li>
+        <li>Food &amp; Nutrition Workshops</li>
+        <li>Styling and Grooming Workshops</li>
+        <li>Makeup Masterclasses</li>
+        <li>Yoga and Energy Healing Sessions</li>
+        <li>Personality Development Programs</li>
+        <li>Health Analysis for a Better Understanding of Your Individual Needs</li>
+      </ul>
+      <div class="dim-cta">
+        <a href="index.html#contact" class="btn-primary">Enquire Now</a>
+        <a href="index.html#contact" class="btn-outline-pink">Know More</a>
+      </div>
+    </div>
+    <div class="dim-visual-wrap reveal">
+      <div class="dim-main-img" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80')"></div>
+      <div class="dim-float-card">
+        <div class="fc-label">Includes</div>
+        <div class="fc-items">
+          <div class="fc-item">Dance &amp; Fitness</div>
+          <div class="fc-item">Yoga &amp; Healing</div>
+          <div class="fc-item">Nutrition &amp; Grooming</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 2. MENTAL ── -->
+<section class="dimension-section" id="mental">
+  <div class="dim-section-inner reverse">
+    <div class="reveal">
+      <div class="dim-header">
+        <div class="dim-badge">🧠 Dimension 02</div>
+        <h2 class="dim-title">Mental <em>Wellness</em></h2>
+      </div>
+      <p class="dim-body">Mental wellness is about maintaining emotional balance and a healthy state of mind. It helps you stay calm, focused, positive, and emotionally strong in everyday life. A healthy mind improves confidence, relationships, decision-making, and overall quality of life.</p>
+      <p class="dim-body">In today's busy lifestyle, stress and emotional exhaustion have become increasingly common. Taking care of your mental well-being is essential to living a balanced and peaceful life. Mental wellness allows you to better understand your emotions, manage stress effectively, and develop a more positive mindset.</p>
+      <div class="dim-subheading">Our Mental Wellness Programs</div>
+      <ul class="prog-list">
+        <li>Meditation Practices</li>
+        <li>Stress Relief and Relaxation Sessions</li>
+        <li>Emotional Wellness Support</li>
+        <li>Positive Thinking and Self-Growth Activities</li>
+      </ul>
+      <div class="dim-cta">
+        <a href="index.html#contact" class="btn-primary">Enquire Now</a>
+        <a href="index.html#contact" class="btn-outline-pink">Know More</a>
+      </div>
+    </div>
+    <div class="dim-visual-wrap reveal">
+      <div class="dim-main-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80')"></div>
+      <div class="dim-float-card">
+        <div class="fc-label">Includes</div>
+        <div class="fc-items">
+          <div class="fc-item">Meditation</div>
+          <div class="fc-item">Stress Relief</div>
+          <div class="fc-item">Self-Growth</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 3. EMOTIONAL ── -->
+<section class="dimension-section" id="emotional">
+  <div class="dim-section-inner">
+    <div class="reveal">
+      <div class="dim-header">
+        <div class="dim-badge">💛 Dimension 03</div>
+        <h2 class="dim-title">Emotional <em>Wellness</em></h2>
+      </div>
+      <p class="dim-body">Emotional well-being is about taking care of your emotional needs and developing inner strength and resilience. Humans experience a wide range of emotions, both positive and negative, and it is important to understand and manage them effectively.</p>
+      <p class="dim-body">Accepting your emotions is the first step towards emotional well-being and inner happiness. By developing emotional awareness and balance, individuals are able to build stronger relationships, manage stress better, and create a more peaceful and fulfilling life.</p>
+      <div class="dim-subheading">The Path to Emotional Wellness</div>
+      <ul class="prog-list">
+        <li>Maintaining a positive mindset</li>
+        <li>Seeking and accepting support when needed</li>
+        <li>Practicing mindfulness and self-awareness</li>
+        <li>Learning from mistakes instead of fearing them</li>
+        <li>Understanding the importance of different dimensions of wellness</li>
+      </ul>
+      <div class="dim-subheading">Our Emotional Wellness Programs</div>
+      <ul class="prog-list">
+        <li>Mental Health Workshops</li>
+        <li>Anger and Stress Management Sessions</li>
+        <li>Communication and Relationship Management</li>
+        <li>Body Image Workshops</li>
+      </ul>
+      <div class="dim-cta">
+        <a href="index.html#contact" class="btn-primary">Enquire Now</a>
+        <a href="index.html#contact" class="btn-outline-pink">Know More</a>
+      </div>
+    </div>
+    <div class="dim-visual-wrap reveal">
+      <div class="dim-main-img" style="background-image:url('https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=80')"></div>
+      <div class="dim-float-card">
+        <div class="fc-label">Includes</div>
+        <div class="fc-items">
+          <div class="fc-item">Stress Management</div>
+          <div class="fc-item">Relationship Skills</div>
+          <div class="fc-item">Body Image</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 4. SOCIAL ── -->
+<section class="dimension-section" id="social">
+  <div class="dim-section-inner reverse">
+    <div class="reveal">
+      <div class="dim-header">
+        <div class="dim-badge">🤝 Dimension 04</div>
+        <h2 class="dim-title">Social <em>Wellness</em></h2>
+      </div>
+      <p class="dim-body">Human beings are naturally social, and the relationships we build with others play an important role in our overall well-being. Building healthy, supportive, and meaningful connections helps us navigate life's challenges with greater confidence and emotional balance.</p>
+      <p class="dim-body">Strong social wellness encourages better communication, emotional support, self-confidence, and a greater sense of belonging. At Sattva Nation, we help individuals develop healthy social habits, positive communication skills, and meaningful interpersonal connections.</p>
+      <div class="dim-subheading">Our Social Wellness Programs</div>
+      <ul class="prog-list">
+        <li>Beneficial Social Networking</li>
+        <li>Marathons</li>
+        <li>Community Workshops</li>
+        <li>Building Supportive Intimate Networks</li>
+      </ul>
+      <div class="dim-cta">
+        <a href="index.html#contact" class="btn-primary">Enquire Now</a>
+        <a href="index.html#contact" class="btn-outline-pink">Know More</a>
+      </div>
+    </div>
+    <div class="dim-visual-wrap reveal">
+      <div class="dim-main-img" style="background-image:url('https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=800&q=80')"></div>
+      <div class="dim-float-card">
+        <div class="fc-label">Includes</div>
+        <div class="fc-items">
+          <div class="fc-item">Networking Events</div>
+          <div class="fc-item">Community Workshops</div>
+          <div class="fc-item">Marathons</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 5. FINANCIAL ── -->
+<section class="dimension-section" id="financial">
+  <div class="dim-section-inner">
+    <div class="reveal">
+      <div class="dim-header">
+        <div class="dim-badge">💰 Dimension 05</div>
+        <h2 class="dim-title">Financial <em>Wellness</em></h2>
+      </div>
+      <p class="dim-body">Financial wellness is about managing your finances in a healthy and balanced way. Developing healthy financial habits such as tracking expenses, budgeting wisely, and planning for the future can help create financial stability and independence.</p>
+      <p class="dim-body">Building positive financial habits and maintaining proper financial planning can help reduce stress and create a sense of stability and security for the future. At Sattva Nation, we help individuals build confidence, develop healthy financial habits, and create a more secure future.</p>
+      <div class="dim-subheading">Our Financial Wellness Programs</div>
+      <div class="sub-prog-grid">
+        <div class="sub-prog-card">
+          <div class="sub-prog-name">💡 Money Management Workshop</div>
+          <div class="sub-prog-desc">Simple, practical, and engaging. Learn budgeting, expense tracking, savings, and everyday money management — designed for homemakers, students, and working professionals alike.</div>
+        </div>
+        <div class="sub-prog-card">
+          <div class="sub-prog-name">🎯 Financial Goals Workshop</div>
+          <div class="sub-prog-desc">Gain confidence in making informed financial decisions. Learn to manage earnings, expenses, and savings while creating practical strategies to achieve your short and long-term goals.</div>
+        </div>
+        <div class="sub-prog-card">
+          <div class="sub-prog-name">📊 Credit &amp; Financial Planning</div>
+          <div class="sub-prog-desc">Focus on goal-based financial planning, money management, and basic investment awareness to help you make smarter financial choices for the future.</div>
+        </div>
+        <div class="sub-prog-card">
+          <div class="sub-prog-name">🚀 Startup &amp; Business Workshops</div>
+          <div class="sub-prog-desc">Guidance for startups and aspiring entrepreneurs — sessions on setting up, managing, and growing a business with confidence.</div>
+        </div>
+        <div class="sub-prog-card">
+          <div class="sub-prog-name">✨ Transformational Coaching</div>
+          <div class="sub-prog-desc">Identify challenges, overcome fears and self-doubt, and develop a positive financial mindset through personalized guidance and practical strategies.</div>
+        </div>
+      </div>
+      <div class="dim-cta">
+        <a href="index.html#contact" class="btn-primary">Enquire Now</a>
+        <a href="index.html#contact" class="btn-outline-pink">Know More</a>
+      </div>
+    </div>
+    <div class="dim-visual-wrap reveal">
+      <div class="dim-main-img" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80')"></div>
+      <div class="dim-float-card">
+        <div class="fc-label">Includes</div>
+        <div class="fc-items">
+          <div class="fc-item">Money Management</div>
+          <div class="fc-item">Financial Goals</div>
+          <div class="fc-item">Startup Guidance</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 6. OCCUPATIONAL ── -->
+<section class="dimension-section" id="occupational">
+  <div class="dim-section-inner reverse">
+    <div class="reveal">
+      <div class="dim-header">
+        <div class="dim-badge">🎯 Dimension 06</div>
+        <h2 class="dim-title">Occupational <em>Wellness</em></h2>
+      </div>
+      <p class="dim-body">Occupational wellness is about choosing a career and work environment that aligns with your interests, strengths, values, and personal goals. It encourages individuals to pursue work that brings personal satisfaction, growth, confidence, and a sense of purpose.</p>
+      <p class="dim-body">Strong occupational wellness also helps individuals manage workplace stress, improve communication, build leadership qualities, and maintain positive professional relationships. Feeling respected, heard, and confident at the workplace is important for maintaining overall well-being.</p>
+      <div class="dim-subheading">Our Occupational Wellness Programs</div>
+      <ul class="prog-list">
+        <li>Career Counselling</li>
+        <li>Social and Professional Etiquette</li>
+        <li>Corporate Skill Development</li>
+        <li>Effective Communication Building</li>
+        <li>Creating a Healthy Work Environment</li>
+      </ul>
+      <div class="dim-cta">
+        <a href="index.html#contact" class="btn-primary">Enquire Now</a>
+        <a href="index.html#contact" class="btn-outline-pink">Know More</a>
+      </div>
+    </div>
+    <div class="dim-visual-wrap reveal">
+      <div class="dim-main-img" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80')"></div>
+      <div class="dim-float-card">
+        <div class="fc-label">Includes</div>
+        <div class="fc-items">
+          <div class="fc-item">Career Counselling</div>
+          <div class="fc-item">Corporate Skills</div>
+          <div class="fc-item">Communication</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 7. INTELLECTUAL ── -->
+<section class="dimension-section" id="intellectual">
+  <div class="dim-section-inner">
+    <div class="reveal">
+      <div class="dim-header">
+        <div class="dim-badge">📚 Dimension 07</div>
+        <h2 class="dim-title">Intellectual <em>Wellness</em></h2>
+      </div>
+      <p class="dim-body">A healthy and active mind plays an important role in living a balanced and fulfilling life. Intellectual wellness is about continuously learning, exploring new ideas, and engaging in creative and stimulating activities that help expand your thinking and perspective.</p>
+      <p class="dim-body">An open and curious mind encourages individuals to try new experiences, learn new skills, and better understand themselves, others, and the world around them. Intellectual wellness helps improve creativity, adaptability, confidence, and decision-making abilities.</p>
+      <div class="dim-subheading">Our Intellectual Wellness Programs</div>
+      <ul class="prog-list">
+        <li>Adventure Tours</li>
+        <li>Motivational Experience Workshops</li>
+        <li>Art and Cultural Workshops</li>
+        <li>Skills and Time Management Sessions</li>
+        <li>Corporate Skill Development</li>
+        <li>Book Clubs and Interactive Learning Activities</li>
+      </ul>
+      <div class="dim-cta">
+        <a href="index.html#contact" class="btn-primary">Enquire Now</a>
+        <a href="index.html#contact" class="btn-outline-pink">Know More</a>
+      </div>
+    </div>
+    <div class="dim-visual-wrap reveal">
+      <div class="dim-main-img" style="background-image:url('https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=800&q=80')"></div>
+      <div class="dim-float-card">
+        <div class="fc-label">Includes</div>
+        <div class="fc-items">
+          <div class="fc-item">Adventure Tours</div>
+          <div class="fc-item">Art &amp; Culture</div>
+          <div class="fc-item">Book Clubs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 8. ENVIRONMENTAL ── -->
+<section class="dimension-section" id="environmental">
+  <div class="dim-section-inner reverse">
+    <div class="reveal">
+      <div class="dim-header">
+        <div class="dim-badge">🌍 Dimension 08</div>
+        <h2 class="dim-title">Environmental <em>Wellness</em></h2>
+        <div class="dim-quote">"Green Hands for a Green Future"</div>
+      </div>
+      <p class="dim-body">Environmental wellness is about building a healthier relationship with nature and creating sustainable habits that support both personal well-being and the planet. It encourages individuals to become more aware of their surroundings, reduce environmental impact, and contribute towards a greener future.</p>
+      <div class="dim-subheading">Key Focus Areas</div>
+      <div class="focus-pills">
+        <span class="focus-pill">Energy Conservation</span>
+        <span class="focus-pill">Recycling</span>
+        <span class="focus-pill">Environmental Awareness</span>
+        <span class="focus-pill">Sustainability</span>
+        <span class="focus-pill">Volunteering</span>
+      </div>
+      <div class="dim-subheading">Our Environmental Programs</div>
+      <div class="sub-prog-grid">
+        <div class="sub-prog-card">
+          <div class="sub-prog-name">🏔️ Nature Tours</div>
+          <div class="sub-prog-desc">Reconnect with nature through curated travel — from the unexplored hamlets of Himachal and Uttarakhand to Ladakh, Mt. Everest, Bhutan, Bali, and Europe.</div>
+        </div>
+        <div class="sub-prog-card">
+          <div class="sub-prog-name">🌿 Sustainable Infrastructure Workshops</div>
+          <div class="sub-prog-desc">Learn about sustainable living and eco-friendly infrastructure through interactive workshops including insights into LEED-certified practices.</div>
+        </div>
+        <div class="sub-prog-card">
+          <div class="sub-prog-name">⚡ Energy &amp; Resource Conservation</div>
+          <div class="sub-prog-desc">Seminars and awareness programs in collaboration with public and private organizations, led by environmental experts, on protecting natural resources.</div>
+        </div>
+      </div>
+      <div class="dim-cta">
+        <a href="index.html#contact" class="btn-primary">Enquire Now</a>
+        <a href="index.html#contact" class="btn-outline-pink">Know More</a>
+      </div>
+    </div>
+    <div class="dim-visual-wrap reveal">
+      <div class="dim-main-img" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80')"></div>
+      <div class="dim-float-card">
+        <div class="fc-label">Includes</div>
+        <div class="fc-items">
+          <div class="fc-item">Nature Tours</div>
+          <div class="fc-item">Sustainability</div>
+          <div class="fc-item">Conservation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-inner reveal">
+    <span class="section-tag">Begin Your Journey</span>
+    <h2 class="cta-title">Ready to take charge of your <em>wellbeing?</em></h2>
+    <p class="cta-sub">Every individual is unique. That's why Sattva Nation creates personalized wellness plans designed specifically around your goals and lifestyle — residential workshops, weekly sessions, or online classes.</p>
+    <div class="cta-btns">
+      <a href="index.html#contact" class="btn-white">Connect With Us</a>
+      <a href="about.html" class="btn-outline-white">Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SattvaNation</div>
+  <ul class="footer-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="#">Programmes</a></li>
+    <li><a href="index.html#events">Events</a></li>
+    <li><a href="index.html#mentors">Mentors</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Sattva Nation. Celebrate Life.</div>
+</footer>
+
+<script>
+// Scroll reveal
+(function() {
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+})();
+
+// Active tab highlight on scroll
+(function() {
+  const sections = document.querySelectorAll('.dimension-section');
+  const tabs = document.querySelectorAll('.dim-tab');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        tabs.forEach(t => {
+          t.classList.toggle('active', t.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s => observer.observe(s));
+})();
+</script>
+
+</body>
+</html>
