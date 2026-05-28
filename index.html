@@ -949,6 +949,121 @@
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  .about-modern {
+  padding: 7rem 5%;
+  background: #fff;
+}
+
+.about-top {
+  max-width: 760px;
+  margin-bottom: 4rem;
+}
+
+.about-title {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1.1;
+  color: var(--text-dark);
+  margin-bottom: 1.2rem;
+}
+
+.about-title em {
+  color: var(--pink-deep);
+  font-style: italic;
+}
+
+.about-lead {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--text-mid);
+  max-width: 680px;
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+}
+
+.about-card {
+  background: var(--pink-pale);
+  border: 1px solid #f4c0d1;
+  border-radius: 24px;
+  padding: 2rem;
+  transition: 0.25s;
+}
+
+.about-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(194,24,91,0.1);
+}
+
+.about-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-card h3 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-dark);
+}
+
+.about-card p {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--text-mid);
+}
+
+.about-story {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-story-text h3 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.about-story-text p {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--text-mid);
+  margin-bottom: 1.2rem;
+}
+
+.quote-box {
+  background: var(--pink-deep);
+  color: white;
+  padding: 3rem;
+  border-radius: 30px;
+  font-family: var(--serif);
+  font-size: 2rem;
+  line-height: 1.4;
+  font-style: italic;
+  box-shadow: 0 20px 50px rgba(194,24,91,0.2);
+}
+
+@media (max-width: 900px) {
+
+  .about-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .about-story {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-box {
+    font-size: 1.5rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -1180,21 +1295,86 @@ carousel.addEventListener('touchend', e => {
 </script>
 
 <!-- ABOUT US -->
-<section class="about-us" id="about-us" style="padding: 4rem 5% 2rem 5%;">
-  <div style="max-width: 1000px;">
+<section class="about-modern" id="about-us">
+
+  <div class="about-top">
     <span class="section-tag">About Us</span>
-    <h2 class="section-title" style="font-size: clamp(1.8rem, 3vw, 2.4rem);">Love. Refine. Empower.</h2>
-    <p class="section-body" style="margin-top:0.75rem;">Embrace your Sattva and celebrate life.</p>
-    <p class="section-body" style="margin-top:0.75rem;">Take charge of your life.</p>
-    <p class="section-body" style="margin-top:0.75rem;">Life can get busy, and the mind can feel tired sometimes. That's where Sattva Nation comes in.</p>
-    <p class="section-body" style="margin-top:0.75rem;">Sattva Nation is a festival to celebrate life and bring the best of you!</p>
-    <p class="section-body" style="margin-top:0.75rem;">Sattva represents purity, wholesomeness, and virtue. It is one of the 3 gunas, or attributes, that all human being possess.</p>
-    <p class="section-body" style="margin-top:0.75rem;">"Everybody has Sattva in them. It's a human quality."</p>
-    <p class="section-body" style="margin-top:0.75rem;">It focuses on bringing holistic wellbeing into everyday life through curated experiences, conversations, and learning spaces.</p>
-    <p class="section-body" style="margin-top:0.75rem;">We host wellness festivals, conferences, corporate programs, university events, and government collaborations, creating a shared platform where experts from diverse fields come together to share knowledge and practical tools for better living.</p>
-    <p class="section-body" style="margin-top:0.75rem;">Our approach is rooted in the belief that wellbeing is not one-dimensional. It is shaped by multiple aspects of life that work together - how we think, feel, work, connect, and grow.</p>
-    <p class="section-body" style="margin-top:0.75rem;">That's why Sattva Nation focuses on the 8 dimensions of wellness: occupational, emotional, spiritual, environmental, financial, physical, social, and intellectual. Each dimension plays a role in shaping a balanced and fulfilling life, and none exists in isolation.</p>
-    <p class="section-body" style="margin-top:0.75rem;">More than just a wellness platform, it is a growing community where people can learn, grow, connect, and move towards a healthier lifestyle at their own pace.</p>
+
+    <h2 class="about-title">
+      Love. Refine. <em>Empower.</em>
+    </h2>
+
+    <p class="about-lead">
+      Sattva Nation is a wellness movement designed to help people reconnect
+      with balance, mindfulness, and meaningful living.
+    </p>
+  </div>
+
+  <div class="about-cards">
+
+    <div class="about-card">
+      <div class="about-icon">🌿</div>
+      <h3>Holistic Wellness</h3>
+      <p>
+        We focus on mental, emotional, physical, financial,
+        social, and spiritual wellbeing.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <div class="about-icon">✨</div>
+      <h3>Transformative Experiences</h3>
+      <p>
+        Festivals, retreats, workshops, and experiences
+        that create lasting positive change.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <div class="about-icon">🤝</div>
+      <h3>Community Driven</h3>
+      <p>
+        A growing community where people learn,
+        connect, and evolve together.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="about-story">
+
+    <div class="about-story-text">
+      <h3>The Meaning of Sattva</h3>
+
+      <p>
+        Sattva represents purity, balance, and harmony.
+        It is one of the three gunas described in ancient Indian philosophy.
+      </p>
+
+      <p>
+        At Sattva Nation, we bring this philosophy into modern life through
+        curated wellness experiences, expert-led programmes, and meaningful conversations.
+      </p>
+
+      <p>
+        Our mission is simple:
+        help people slow down, reconnect, and live more consciously.
+      </p>
+
+      <a href="/events" class="btn-primary">
+        Explore Experiences
+      </a>
+    </div>
+
+    <div class="about-quote">
+      <div class="quote-box">
+        “Everybody has Sattva within them.”
+      </div>
+    </div>
+
+  </div>
+
+</section>
   </div>
 </section>
 
