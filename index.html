@@ -116,20 +116,25 @@
   }
 
   /* Slide content */
-  .slide-content {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 8% 0 8%;
-    padding-top: 80px;
-    z-index: 2;
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.7s 0.3s ease, transform 0.7s 0.3s ease;
-    max-width: 780px;
-  }
+ .slide-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 0 8%;
+  padding-top: 40px;
+  padding-bottom: 180px;
+
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s 0.3s ease,
+              transform 0.7s 0.3s ease;
+
+  max-width: 780px;
+}
   .carousel-slide.active .slide-content {
     opacity: 1;
     transform: translateY(0);
